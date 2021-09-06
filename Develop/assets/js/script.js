@@ -25,15 +25,27 @@ function displayDate() {
     var myTomorrow  = dayjs(myDate).add(1, 'day').format("MM/DD/YYYY");    
 
     var h3Element = document.createElement("h3");
-    h3Element.innerHTML = "<a href='index.html?v1=" + myYesterday + "'><i class='fas fa-arrow-circle-left'></i></a>  <a href='index.html?v1=" + myTomorrow + "'><i class='fas fa-arrow-circle-right'></i></a>  <i class='fas fa-cog'></i>";
+    h3Element.innerHTML = "<a href='index.html?v1=" + myYesterday + "'><i class='fas fa-arrow-circle-left'></i></a>  <a href='index.html?v1=" + myTomorrow + "'><i class='fas fa-arrow-circle-right'></i></a>  <a href='./config.html'><i class='fas fa-cog'></i></a>";
     currentDayContent.appendChild(h3Element);
 }
 
 function displayCalendar() {
-    myHour    = 6;
+    myHour        = 0;
+    myHoursToLoop = 24;
+
+    var startConfigured = localStorage.getItem("wsStart");
+    var stopConfigured  = localStorage.getItem("wsStop"); 
+    
+    if (startConfigured) {
+        myHour        = startConfigured;
+        myHoursToLoop = stopConfigured - startConfigured;
+    }
+
+    console.log(myHoursToLoop);
+
     myHourNow = dayjs().format("H");
 
-    for (index = 0; index < 18; index++) {
+    for (index = 0; index < myHoursToLoop; index++) {
         // To-Do: Get Value from Local Storage        
         var myFormattedHour = ("0" + myHour).slice(-2);        
 
@@ -51,7 +63,6 @@ function displayCalendar() {
         divElement.className = "hour col";
         divElement.textContent = myClock.format("h A");
         divContainer.appendChild(divElement);
-
 
         // task text
         // determine class for grey / red / or green column
