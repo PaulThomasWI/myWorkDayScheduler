@@ -8,7 +8,6 @@ I added three buttons from FontAwesome. The first button takes you back a day. T
 https://github.com/PaulThomasWI/myWorkDayScheduler
 
 Production
-
+https://paulthomaswi.github.io/myWorkDayScheduler
 
 Build by Paul Thomas, September 2021
-
